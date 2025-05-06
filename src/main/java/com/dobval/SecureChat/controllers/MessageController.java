@@ -1,9 +1,8 @@
 package com.dobval.SecureChat.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
 import com.dobval.SecureChat.services.KafkaProducerService;
 
@@ -18,8 +17,15 @@ public class MessageController {
     }
 
     @PostMapping("/send")
-    public String sendMessage(@RequestParam String message) { //TODO: Test using Postman/curl "curl -X POST "http://localhost:8080/send?message=Hello Kafka!""
-        producerService.sendMessage("myTopic", message);	//TODO: write a unit test
-        return "Message sent to Kafka topic";
+    public ResponseEntity<String> sendMessage(@RequestParam String message) {
+        try {
+            producerService.sendMessage("myTopic", message);
+            return ResponseEntity.ok("Message sent to Kafka topic\n");
+        } catch (Exception e) {
+            // Log error (omitted) and return 500 with custom message
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to send message: " + e.getMessage());
+        }
     }
 }
