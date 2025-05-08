@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @Table(name = "messages")
 @EntityListeners(AuditingEntityListener.class)
-public class Message {
+public class ChatMessage {
     @Id 
     @GeneratedValue
     private Long id;
