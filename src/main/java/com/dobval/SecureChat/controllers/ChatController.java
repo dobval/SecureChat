@@ -4,12 +4,12 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import com.dobval.SecureChat.entities.ChatMessage;
+import com.dobval.SecureChat.model.Message;
 
 //TODO: different ChatMessage and Message entities?
 @Controller
 public class ChatController {
 	@MessageMapping("/send")
 	@SendTo("/topic/messages")
-	public ChatMessage send(ChatMessage msg) { return msg; }
+	public Message send(Message msg) { return msg; }
 }

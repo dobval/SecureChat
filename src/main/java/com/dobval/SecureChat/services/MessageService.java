@@ -2,13 +2,13 @@ package com.dobval.SecureChat.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.dobval.SecureChat.entities.ChatMessage;
+import com.dobval.SecureChat.model.Message;
 import com.dobval.SecureChat.repositories.ChatMessageRepository;
 
 public class MessageService {
     @Autowired private ChatMessageRepository repo;
-    public ChatMessage save(String sender, String content) {
-    	ChatMessage m = new ChatMessage();
+    public Message save(String sender, String content) {
+    	Message m = new Message();
         m.setSender(sender);
         m.setContent(content);
         return repo.save(m);

@@ -1,4 +1,4 @@
-package com.dobval.SecureChat.entities;
+package com.dobval.SecureChat.model;
 
 import java.time.Instant;
 
@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @Table(name = "messages")
 @EntityListeners(AuditingEntityListener.class)
-public class ChatMessage {
+public class Message {
     @Id 
     @GeneratedValue
     private Long id;

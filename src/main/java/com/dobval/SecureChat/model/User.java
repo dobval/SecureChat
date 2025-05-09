@@ -1,4 +1,4 @@
-package com.dobval.SecureChat.entities;
+package com.dobval.SecureChat.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

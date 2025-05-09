@@ -2,6 +2,6 @@ package com.dobval.SecureChat.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.dobval.SecureChat.entities.ChatMessage;
+import com.dobval.SecureChat.model.Message;
 
-public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> { }
+public interface ChatMessageRepository extends JpaRepository<Message, Long> { }
