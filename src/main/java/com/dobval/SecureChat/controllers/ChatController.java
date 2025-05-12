@@ -1,8 +1,12 @@
 package com.dobval.SecureChat.controllers;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 import com.dobval.SecureChat.model.ChatMessageDTO;
@@ -19,14 +23,7 @@ public class ChatController {
     }
 
     @MessageMapping("/send")
-    @SendTo("/topic/messages")
-    public ChatMessageDTO send(ChatMessageDTO dto) {
-        // Optionally persist
-        Message saved = messageService.save(dto.getSender(), dto.getContent());
-        return new ChatMessageDTO(
-            saved.getSender(),
-            saved.getContent(),
-            saved.getTimestamp()
-        );
+    public void sendMessage(@Payload ChatMessageDTO message, Principal principal) {
+        messageService.saveAndBroadcast(message, principal.getName());
     }
 }

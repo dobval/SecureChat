@@ -4,18 +4,14 @@
   <title>SecureChat</title>
 </head>
 <body>
-  <div>
-    <input id="sender" placeholder="Your name" />
-    <input id="content" placeholder="Type a message" />
-    <button onclick="sendMessage()">Send</button>
-  </div>
-  <ul id="chat">
-    <!-- messages will appear here -->
-  </ul>
+  <h2>Secure Chat</h2>
+  <input id="content" placeholder="Type a message" />
+  <button onclick="sendMessage()">Send</button>
+
+  <ul id="chat"></ul>
 
   <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@6.1.2/bundles/stomp.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@6/umd/stomp.umd.min.js"></script>
   <script src="/js/app.js"></script>
-
 </body>
 </html>
