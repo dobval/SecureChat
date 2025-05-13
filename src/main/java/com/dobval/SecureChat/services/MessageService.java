@@ -28,6 +28,7 @@ public class MessageService {
         repo.save(msg);
         repo.convertAndSend("/topic/messages", msg);
         //TODO: fix
+        //TODO: Docker Compose setup Postgre!
     }
 
 }
