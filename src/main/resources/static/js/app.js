@@ -1,6 +1,7 @@
 console.log('app.js loaded');
 
 const token = localStorage.getItem("jwt"); // assuming token was saved after login
+//console.log("JWT token:", token); //Debugging login
 
 window.addEventListener("load", connect);
 
@@ -20,11 +21,13 @@ function connect() {
   stompClient.connect({}, () => {
     console.log("Connected");
 
-	stompClient.subscribe("/topic/messages", (msg) => {
+    stompClient.subscribe("/topic/messages", (msg) => {
       const { sender, content, timestamp } = JSON.parse(msg.body);
       appendMessage(sender, content, timestamp);
     });
+  });
 }
+
 
 function sendMessage() {
   const content = document.getElementById("content").value;

@@ -19,4 +19,4 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
       - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
     depends_on:
-      - zookeeper
+      - zookeeper # TODO: SETUP POSTGRE
