@@ -1,13 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Login - SecureChat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="#{login.title}">Login - SecureChat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Login</h2>
-  <input id="loginUsername" placeholder="Username" />
-  <input id="loginPassword" type="password" placeholder="Password" />
-  <button onclick="login()">Login</button>
+  <div class="container">
+    <h2 th:text="#{login.header}">Login</h2>
+    <div id="errorMessage" class="error" th:text="${errorMessage}" th:if="${errorMessage != null}"></div>
+
+    <input id="loginUsername" placeholder="Username" th:value="${username}" />
+    <input id="loginPassword" type="password" placeholder="Password" />
+    <button onclick="login()">
+      <span th:text="#{login.button}">Login</span>
+    </button>
+  </div>
 
   <script>
     function login() {
@@ -28,7 +83,10 @@
           // redirect to chat
           window.location.href = "/forms/chat.html";
         })
-        .catch((err) => alert(err.message));
+        .catch((err) => {
+          const errorMessage = document.getElementById("errorMessage");
+          errorMessage.innerHTML = "Login failed. Please try again.";
+        });
     }
   </script>
 </body>
