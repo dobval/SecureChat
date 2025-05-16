@@ -1,0 +1,8 @@
+:root {
+  --primary-color: #626F47;  /* Dark Olive */
+  --secondary-color: #A4B465;  /* Light Olive */
+  --background-color: #F5ECD5;  /* Light Beige */
+  --accent-color: #F0BB78;  /* Light Orange */
+  --text-color: #333;  /* Dark Gray Text */
+  --border-color: #ccc;  /* Border color */
+}

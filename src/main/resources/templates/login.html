@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title th:text="#{login.title}">Login - SecureChat</title>
+  <link rel="stylesheet" href="@{/css/colors.css}">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-color: var(--background-color, #F5ECD5);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
+
     .container {
       background-color: white;
       padding: 20px;
@@ -21,30 +23,35 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 300px;
     }
+
     h2 {
       text-align: center;
-      color: #333;
+      color: var(--primary-color);
     }
+
     input {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border-radius: 4px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       box-sizing: border-box;
     }
+
     button {
       width: 100%;
       padding: 10px;
-      background-color: #007BFF;
+      background-color: var(--primary-color);
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: #0056b3;
+      background-color: var(--accent-color);
     }
+
     .error {
       color: red;
       text-align: center;
@@ -81,7 +88,7 @@
         .then((data) => {
           localStorage.setItem("jwt", data.token);
           // redirect to chat
-          window.location.href = "/forms/chat.html";
+          window.location.href = "/chat";
         })
         .catch((err) => {
           const errorMessage = document.getElementById("errorMessage");

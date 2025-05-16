@@ -11,7 +11,7 @@ function connect() {
   const token = localStorage.getItem("jwt");
   if (!token) {
     alert("Not logged in. Redirecting...");
-    window.location.href = "/forms/login.html";
+    window.location.href = "/login";
     return;
   }
 

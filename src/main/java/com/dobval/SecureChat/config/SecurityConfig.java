@@ -29,9 +29,21 @@ public class SecurityConfig {
         return http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**", "/forms/**", "/js/**").permitAll()
+            		.requestMatchers(
+            	            "/auth/**",        // allow login/register API
+            	            "/login",          // login page
+            	            "/chat",           // chat page (if using frontend routing)
+            	            "/js/**",          // static JS
+            	            "/css/**",         // static CSS
+            	            "/favicon.ico"     // TODO: ADD FAVICON
+            	        ).permitAll()
                 .anyRequest().authenticated()
             )
+            .formLogin(form -> form
+                    .loginPage("/login-page")
+                    .loginProcessingUrl("/login")  // where the login form POSTs to
+                    .defaultSuccessUrl("/chat", true)
+                    .permitAll())
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
