@@ -1,8 +1,24 @@
 :root {
-  --primary-color: #626F47;  /* Dark Olive */
-  --secondary-color: #A4B465;  /* Light Olive */
-  --background-color: #F5ECD5;  /* Light Beige */
-  --accent-color: #F0BB78;  /* Light Orange */
-  --text-color: #333;  /* Dark Gray Text */
-  --border-color: #ccc;  /* Border color */
+  --primary-color: #2C3E50;  /* Deep Blue */
+  --secondary-color: #1ABC9C;  /* Teal */
+  --background-color: #ECF0F1;  /* Light Gray */
+  --accent-color: #2ECC71;  /* Emerald Green */
+  --text-color: #000000;  /* Black */
+  --border-color: #7F8C8D;  /* Dark Gray */
+  --warning-color: #E67E22;  /* Soft Orange */
 }
+
+#E5D9B6
+#A4BE7B
+#5F8D4E
+#285430
+
+#1A1A19
+#31511E
+#859F3D
+#F6FCDF
+
+#000000
+#3E432E
+#616F39
+#A7D129

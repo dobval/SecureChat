@@ -25,28 +25,24 @@ public class SecurityConfig {
     private JwtAuthenticationFilter jwtFilter;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-            		.requestMatchers(
-            	            "/auth/**",        // allow login/register API
-            	            "/login",          // login page
-            	            "/chat",           // chat page (if using frontend routing)
-            	            "/js/**",          // static JS
-            	            "/css/**",         // static CSS
-            	            "/favicon.ico"     // TODO: ADD FAVICON
-            	        ).permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
-                    .loginPage("/login-page")
-                    .loginProcessingUrl("/login")  // where the login form POSTs to
-                    .defaultSuccessUrl("/chat", true)
-                    .permitAll())
-            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
+    SecurityFilterChain publicEndpoints(HttpSecurity http) throws Exception {
+        http
+          .securityMatcher("/login", "/auth/**", "/js/**", "/css/**", "/chat/**")
+          .csrf(csrf -> csrf.disable())
+          .authorizeHttpRequests(a -> a.anyRequest().permitAll());
+        return http.build();
+    }
+
+    @Bean
+    SecurityFilterChain protectedEndpoints(HttpSecurity http,
+                                           JwtAuthenticationFilter jwtFilter) throws Exception {
+        http
+          .securityMatcher("/api") // only APIs under /api/ are protected
+          .csrf(csrf -> csrf.disable())
+          .authorizeHttpRequests(a -> a.anyRequest().authenticated())
+          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+          .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        return http.build();
     }
 
     @Bean

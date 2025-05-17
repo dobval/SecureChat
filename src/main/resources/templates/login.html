@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title th:text="#{login.title}">Login - SecureChat</title>
-  <link rel="stylesheet" href="@{/css/colors.css}">
+  <!-- Thymeleaf rewrites URL (th:href) + plain href fallback -->
+  <link rel="stylesheet"
+          th:href="@{/css/colors.css}"
+          href="/css/colors.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
