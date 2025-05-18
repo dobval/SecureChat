@@ -5,13 +5,18 @@
   <link rel="stylesheet"
           th:href="@{/css/colors.css}"
           href="/css/colors.css" />
+  <link rel="stylesheet" 
+  		  th:href="@{/css/styles.css}"
+  		  href="/css/styles.css" />
 </head>
 <body>
-  <h2>Secure Chat</h2>
-  <input id="content" placeholder="Type a message" />
-  <button onclick="sendMessage()">Send</button>
-
-  <ul id="chat"></ul>
+  <div class="container">
+	  <h2>Secure Chat</h2>
+	  <input id="content" placeholder="Type a message" />
+	  <button onclick="sendMessage()">Send</button>
+	
+	  <ul id="chat"></ul>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@6.1.2/umd/stomp.umd.min.js" integrity="sha384-ycSK3qU5pZsSRzO9NPcFiUOAZUpBxV3vTWbbtZzOq6cPbL0dfWZ4AHrPv2ZLDpsU" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
