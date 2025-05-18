@@ -11,43 +11,32 @@
   <link rel="stylesheet" 
 		  th:href="@{/css/styles.css}"
 		  href="/css/styles.css" />
+  <link rel="icon" 
+  		  th:href="@{/favicon.ico}"
+  		  href="/favicon.ico" sizes="any">
+  <link rel="icon" 
+  		  th:href="@{/favicon.svg}"
+  		  href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+	<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+	    enabled. Please enable
+	    Javascript and reload this page!</h2></noscript>
   <div class="container">
     <h2 th:text="#{login.header}">Login</h2>
-    <div id="errorMessage" class="error" th:text="${errorMessage}" th:if="${errorMessage != null}"></div>
+    <div id="errorMessage" class="error"></div>
 
-    <input id="loginUsername" placeholder="Username" th:value="${username}" />
-    <input id="loginPassword" type="password" placeholder="Password" />
-    <button onclick="login()">
-      <span th:text="#{login.button}">Login</span>
-    </button>
+	<form id="loginForm">
+	    <input id="loginUsername" placeholder="Username" th:value="${username}" />
+	    <input id="loginPassword" type="password" placeholder="Password" />
+	    <button onclick="login()" type="submit">
+	      <span th:text="#{login.button}">Login</span>
+	    </button>
+	</form>
   </div>
 
-  <script>
-    function login() {
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-
-      fetch("/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error("Login failed");
-          return res.json();
-        })
-        .then((data) => {
-          localStorage.setItem("jwt", data.token);
-          // redirect to chat
-          window.location.href = "/chat";
-        })
-        .catch((err) => {
-          const errorMessage = document.getElementById("errorMessage");
-          errorMessage.innerHTML = "Login failed. Please try again.";
-        });
-    }
-  </script>
+  <script src="/js/stomp.umd.min.js"></script>
+  <script src="/js/sockjs.min.js"></script>
+  <script th:src="@{/js/app.js}"></script>
 </body>
 </html>

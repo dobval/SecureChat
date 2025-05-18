@@ -3,17 +3,59 @@ console.log('app.js loaded');
 const token = localStorage.getItem("jwt"); // assuming token was saved after login
 //console.log("JWT token:", token); //Debugging login
 
-window.addEventListener("load", connect);
-
 let stompClient;
 
-function connect() {
-  const token = localStorage.getItem("jwt");
-  if (!token) {
-    alert("Not logged in. Redirecting...");
-    window.location.href = "/login";
-    return;
+window.addEventListener("load", () => {
+  if (window.location.pathname === "/chat") {
+    connect();
   }
+});
+
+function login() { //used by login.html
+	  console.log("login() called");
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+	  const loginUrl = `http://localhost:8080/auth/login`; //HARDCODED for DEBUG
+	  console.log("Posting to", loginUrl);
+	  
+	  fetch(loginUrl, {
+	      method: "POST",
+	      headers: { "Content-Type": "application/json" },
+	      body: JSON.stringify({ username, password }),
+	    })
+	      .then(res => {
+	        console.log("Login response status:", res.status);
+	        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+	        return res.json();
+	      })
+	      .then(data => {
+	        console.log("Login succeeded, token:", data.token);
+	        localStorage.setItem("jwt", data.token);
+	        window.location.href = "/chat";
+	      })
+	      .catch(err => {
+	        console.error("Login error:", err);
+	        const errEl = document.getElementById("errorMessage");
+	        if (errEl) errEl.innerText = "Login failed. Please try again.";
+	      });
+    }
+
+function connect() {
+	  const token = localStorage.getItem("jwt");
+	  const currentPath = window.location.pathname;
+
+	  if (!token && currentPath !== "/login") {
+	    // looks better than alert
+	    console.warn("Not logged in. Redirecting to login page...");
+
+	    // small delay, page has fully loaded, user read the error
+	    setTimeout(() => {
+	      window.location.href = "/login";
+	    }, 5000); // 5000ms
+	    return;
+	  }
+	
 
   const socket = new SockJS(`/chat?token=${token}`);
   stompClient = Stomp.over(socket);
@@ -45,4 +87,4 @@ function appendMessage(sender, content, timestamp) {
 }
 
 // expose globally
-window.sendMessage = sendMessage;
+//window.sendMessage = sendMessage;

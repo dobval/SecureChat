@@ -37,6 +37,7 @@ public class AuthController {
     //TODO: Test GET req with cURL and authorization bearer token! Maybe new endpoint?
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequestDTO req) {
+    	System.out.println("Login attempt for user: " + req.getUsername()); //logging
         Authentication auth = authManager.authenticate(
             new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
         String token = jwtProvider.generateToken(auth);
