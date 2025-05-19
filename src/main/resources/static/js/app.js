@@ -3,6 +3,12 @@ console.log('app.js loaded');
 const token = localStorage.getItem("jwt"); // assuming token was saved after login
 //console.log("JWT token:", token); //Debugging login
 
+if (window.StompJs && StompJs.Stomp) {
+  window.Stomp = StompJs.Stomp;
+} else {
+  console.error("STOMP bundle not found!");
+}
+
 let stompClient;
 
 window.addEventListener("load", () => {
@@ -11,8 +17,9 @@ window.addEventListener("load", () => {
   }
 });
 
-function login() { //used by login.html
-	  console.log("login() called");
+function login(e) { //used by login.html
+	  console.log("login() called"); //DEBUG
+	  e.preventDefault(); // stops browser refresh (due to type=submit, *Enter key works this way)
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
@@ -39,9 +46,10 @@ function login() { //used by login.html
 	        const errEl = document.getElementById("errorMessage");
 	        if (errEl) errEl.innerText = "Login failed. Please try again.";
 	      });
-    }
+}
 
 function connect() {
+	console.log("connect() called"); //DEBUG
 	  const token = localStorage.getItem("jwt");
 	  const currentPath = window.location.pathname;
 
@@ -71,14 +79,17 @@ function connect() {
 }
 
 
-function sendMessage() {
-  const content = document.getElementById("content").value;
-  stompClient.send("/app/send", {}, JSON.stringify({ content }));
+function sendMessage(e) {
+	console.log("sendMessage() called"); //DEBUG
+	e.preventDefault(); // stops browser refresh (due to type=submit, *Enter key works this way)
+	const content = document.getElementById("content").value;
+	stompClient.send("/app/send", {}, JSON.stringify({ content }));
 }
 
 
 
 function appendMessage(sender, content, timestamp) {
+	console.log("appendMessage() called"); //DEBUG
   const chatList = document.querySelector('#chat');
   const li       = document.createElement('li');
   const time     = timestamp ? new Date(timestamp).toLocaleTimeString() : '';

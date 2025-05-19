@@ -10,6 +10,11 @@ public class PageController {
     public String login() {
         return "login"; // templates/login.html
     }
+    
+    @GetMapping("/register")
+    public String register() {
+        return "register"; //TODO: add register page
+    }
 
     @GetMapping("/chat")
     public String chat() {
