@@ -1,27 +1,30 @@
+/*=============================
+  Color Palette
+=============================*/
 :root {
-  --primary-color: #2C3E50;  /* Deep Blue */
-  --secondary-color: #1ABC9C;  /* Teal */
-  --background-color: #ECF0F1;  /* Light Gray */
-  --accent-color: #2ECC71;  /* Emerald Green */
-  --text-color: #000000;  /* Black */
-  --border-color: #7F8C8D;  /* Dark Gray */
-  --warning-color: #E67E22;  /* Soft Orange */
+  --primary-color:   #2C3E50;  /* Deep Blue  */
+  --secondary-color: #1ABC9C;  /* Teal       */
+  --background-color:#ECF0F1;  /* Light Gray */
+  --accent-color:    #2ECC71;  /* Emerald    */
+  --warning-color:   #E67E22;  /* Soft Orange*/
+  --text-color:      #000000;  /* Black      */
+  --border-color:    #7F8C8D;  /* Dark Gray  */
+
+  /* Default button vars (login‑page fallback) */
+  --button-bg:      var(--primary-color);
+  --button-hover:   var(--accent-color);
 }
 
-/* Page‑specific overrides */
-body.login-page {
-  --button-bg: var(--primary-color);
-  --button-hover: var(--accent-color);
+/*=============================
+  Global Styles
+=============================*/
+body {
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
-body.register-page {
-  --button-bg: var(--secondary-color);
-  --button-hover: var(--warning-color);
-}
-
-/* Generic button styling uses the --button‑* vars */
 button {
-  background-color: var(--button-bg);
+  background: var(--button-bg);
   color: #fff;
   border: none;
   padding: 0.75em 1em;
@@ -30,5 +33,54 @@ button {
 }
 
 button:hover {
-  background-color: var(--button-hover);
+  background: var(--button-hover);
+}
+
+/*=============================
+  Page‑Specific Color Overrides
+=============================*/
+/* Login page uses primary & accent */
+body.login-page {
+  --button-bg:    var(--primary-color);
+  --button-hover: var(--accent-color);
+}
+
+/* Register page uses secondary & warning */
+body.register-page {
+  --button-bg:    var(--secondary-color);
+  --button-hover: var(--warning-color);
+}
+
+/* More specific overrides to beat any other button rules */
+body.login-page button {
+  background: var(--button-bg);
+}
+body.login-page button:hover {
+  background: var(--button-hover);
+}
+
+body.register-page button {
+  background: var(--button-bg);
+}
+body.register-page button:hover {
+  background: var(--button-hover);
+}
+
+/*=============================
+  Link Styles
+=============================*/
+.link-primary {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.link-primary:hover {
+  color: var(--accent-color);
+}
+
+.link-accent {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+.link-accent:hover {
+  color: var(--warning-color);
 }
