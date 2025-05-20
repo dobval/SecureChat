@@ -31,7 +31,7 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepo.save(user);
-        return ResponseEntity.ok("User registered");
+        return ResponseEntity.ok(Map.of("message", "User registered"));
     }
 
     //TODO: Test GET req with cURL and authorization bearer token! Maybe new endpoint?

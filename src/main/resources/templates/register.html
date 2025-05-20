@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="#{login.title}">Login - SecureChat</title>
-  <!-- Thymeleaf rewrites URL (th:href) + plain href fallback -->
+  <title th:text="#{register.title}">Register - SecureChat</title>
   <link rel="stylesheet"
           th:href="@{/css/colors.css}"
           href="/css/colors.css" />
@@ -18,24 +17,24 @@
   		  th:href="@{/favicon.svg}"
   		  href="/favicon.svg" type="image/svg+xml">
 </head>
-<body class="login-page">
+<body class="register-page">
 	<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
 	    enabled. Please enable
 	    Javascript and reload this page!</h2></noscript>
   <div class="container">
-    <h2 th:text="#{login.header}">Login</h2>
+    <h2 th:text="#{register.header}">Register</h2>
     <div id="errorMessage" class="error"></div>
 
-	<form id="loginForm">
-	    <input id="loginUsername" placeholder="Username" th:value="${username}" />
-	    <input id="loginPassword" type="password" placeholder="Password" />
-	    <button onclick="login(event)" type="submit">
-	      <span th:text="#{login.button}">Login</span>
+	<form id="registerForm">
+	    <input id="registerUsername" placeholder="Username" th:value="${username}" />
+	    <input id="registerPassword" type="password" placeholder="Password" />
+	    <button onclick="register(event)" type="submit">
+	      <span th:text="#{register.button}">Register</span>
 	    </button>
 	</form>
 	<p>
-	  Don’t have an account? 
-	  <a href="/register" class="link-accent">Sign up here</a>
+	  Already registered? 
+	  <a href="/login" class="link-primary">Log in</a>
 	</p>
   </div>
 

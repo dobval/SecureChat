@@ -8,17 +8,27 @@
   --warning-color: #E67E22;  /* Soft Orange */
 }
 
-#E5D9B6
-#A4BE7B
-#5F8D4E
-#285430
+/* Page‑specific overrides */
+body.login-page {
+  --button-bg: var(--primary-color);
+  --button-hover: var(--accent-color);
+}
 
-#1A1A19
-#31511E
-#859F3D
-#F6FCDF
+body.register-page {
+  --button-bg: var(--secondary-color);
+  --button-hover: var(--warning-color);
+}
 
-#000000
-#3E432E
-#616F39
-#A7D129
+/* Generic button styling uses the --button‑* vars */
+button {
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 0.75em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}

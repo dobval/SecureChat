@@ -17,13 +17,45 @@ window.addEventListener("load", () => {
   }
 });
 
+// TODO: tidy up code! different files perhaps?
+
+function register(e) {
+	console.log("register() called"); //DEBUG
+	e.preventDefault(); // stops browser refresh (due to type=submit, *Enter key works this way)
+	const username = document.getElementById("registerUsername").value;
+	const password = document.getElementById("registerPassword").value;
+	
+	const registerUrl = `http://localhost:8080/auth/register`; //HARDCODED for DEBUG ; TODO: rewrite
+		  console.log("Posting to", registerUrl);
+		  
+		  fetch(registerUrl, {
+		      method: "POST",
+		      headers: { "Content-Type": "application/json" },
+		      body: JSON.stringify({ username, password }),
+		    })
+		      .then(res => {
+		        console.log("Register response status:", res.status);
+		        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+		        return res.json();
+		      })
+			  .then(msg => {
+			    console.log("Register succeeded:", msg);
+			    window.location.href = "/login";
+			  })
+		      .catch(err => {
+		        console.error("Register error:", err);
+		        const errEl = document.getElementById("errorMessage");
+		        if (errEl) errEl.innerText = "Register failed. Please try again.";
+		      });
+}
+
 function login(e) { //used by login.html
 	  console.log("login() called"); //DEBUG
 	  e.preventDefault(); // stops browser refresh (due to type=submit, *Enter key works this way)
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
-	  const loginUrl = `http://localhost:8080/auth/login`; //HARDCODED for DEBUG
+	  const loginUrl = `http://localhost:8080/auth/login`; //HARDCODED for DEBUG ; TODO: rewrite
 	  console.log("Posting to", loginUrl);
 	  
 	  fetch(loginUrl, {
