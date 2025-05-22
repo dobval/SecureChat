@@ -1,5 +1,5 @@
 # SecureChat
-   <img src="https://github.com/dobval/SecureChat/blob/main/media/Login_Chat_SecureChat-v1.0.0.gif?raw=true" alt="SecureChat" style="width: 400px; height: auto;" />
+   <img src="https://github.com/dobval/SecureChat/blob/main/media/Register_Login_Chat_SecureChat.gif?raw=true" alt="SecureChat" style="width: 400px; height: auto;" />
 
 ## Table of Contents
 - [Introduction](#introduction)
