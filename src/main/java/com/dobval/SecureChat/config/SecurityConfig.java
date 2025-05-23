@@ -56,21 +56,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-
-/* DISABLES SECURITY
-@Configuration
-public class SecurityConfig { //TEMP to test Without CSRF, TODO: Remove
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-          // Disable CSRF so curl can POST without token
-          .csrf(csrf -> csrf.disable())
-          // Disable HTTP Basic (or you can leave it on if you want auth)
-          .httpBasic(httpBasic -> httpBasic.disable())
-          // Allow all requests without authentication
-          .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
-        return http.build();
-    }
-}
-*/

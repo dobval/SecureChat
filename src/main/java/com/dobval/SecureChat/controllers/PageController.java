@@ -13,7 +13,7 @@ public class PageController {
     
     @GetMapping("/register")
     public String register() {
-        return "register"; //TODO: add register page
+        return "register";
     }
 
     @GetMapping("/chat")

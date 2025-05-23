@@ -25,7 +25,7 @@ function register(e) {
 	const username = document.getElementById("registerUsername").value;
 	const password = document.getElementById("registerPassword").value;
 	
-	const registerUrl = `http://localhost:8080/auth/register`; //HARDCODED for DEBUG ; TODO: rewrite
+	const registerUrl = `/auth/register`; // Uses relative path, backend must handle CORS if hosted separately
 		  console.log("Posting to", registerUrl);
 		  
 		  fetch(registerUrl, {
@@ -55,7 +55,7 @@ function login(e) { //used by login.html
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
-	  const loginUrl = `http://localhost:8080/auth/login`; //HARDCODED for DEBUG ; TODO: rewrite
+	  const loginUrl = `/auth/login`; // Uses relative path, backend must handle CORS if hosted separately
 	  console.log("Posting to", loginUrl);
 	  
 	  fetch(loginUrl, {
