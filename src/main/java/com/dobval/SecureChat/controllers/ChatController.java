@@ -17,7 +17,7 @@ public class ChatController {
     private MessageService messageService;
 
     @MessageMapping("/send")
-    public void sendMessage(@Payload ChatMessageDTO message, Principal principal) {
-        messageService.saveAndBroadcast(message, principal.getName());
+    public void sendMessage(@Payload ChatMessageDTO msgDto, Principal principal) {
+        messageService.saveAndBroadcast(msgDto, principal.getName());
     }
 }

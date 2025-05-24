@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// WebSocket/Kafka payload DTO — not persisted by JPA
 @Data
 @NoArgsConstructor 	// Jackson (display timestamp in html)
 @AllArgsConstructor

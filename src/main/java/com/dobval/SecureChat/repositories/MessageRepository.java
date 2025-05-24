@@ -4,4 +4,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.dobval.SecureChat.model.Message;
 
-public interface ChatMessageRepository extends JpaRepository<Message, Long> { }
+public interface MessageRepository extends JpaRepository<Message, Long> { }
