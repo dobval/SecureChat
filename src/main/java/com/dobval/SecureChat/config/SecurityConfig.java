@@ -37,7 +37,7 @@ public class SecurityConfig {
     SecurityFilterChain protectedEndpoints(HttpSecurity http,
                                            JwtAuthenticationFilter jwtFilter) throws Exception {
         http
-          .securityMatcher("/api") // only APIs under /api/ are protected
+          .securityMatcher("/api/**") //protect all api endpoints
           .csrf(csrf -> csrf.disable())
           .authorizeHttpRequests(a -> a.anyRequest().authenticated())
           .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
