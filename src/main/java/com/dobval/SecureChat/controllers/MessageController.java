@@ -16,6 +16,7 @@ public class MessageController {
         this.producerService = producerService;
     }
 
+    //TODO: ADD more rooms? (Chat rooms)
     @PostMapping("/send")
     public ResponseEntity<String> sendMessage(@RequestParam String message) {
         try {
